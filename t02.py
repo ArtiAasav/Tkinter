@@ -1,18 +1,29 @@
 import tkinter as tk
+import ctypes
 from PIL import Image, ImageTk
 
 def main():
     aken = tk.Tk()
-    aken.title("Tkinderi ülesanded")
-    aken.geometry("200x200")
+    aken.title("tkinter ülesanded")
+    aken.geometry("400x400")
     # Akna suuruse muutmise keelamine
     aken.resizable(False, True)
-   
+
     # Pildi avamine ja Tkinteri jaoks ettevalmistamine
-    pilt = Image.open("Chuck.png")
+    pilt = Image.open("Norris.jpg")
+    pilt = pilt.resize((200,200))
     foto = ImageTk.PhotoImage(pilt)
 
-    label = tk.Label(aken, text="Jack Nigris!", font=("Arial", 16, "bold"), fg='blue').pack
+    # Sildi kuvamine
+    label = tk.Label(aken, text="Jäck Nurris", font=("Arial", 16, "bold"), fg="blue").pack()
+
+    # Pildi kuvamine Label abil
+    label = tk.Label(aken, image=foto)
+    label.image = foto
+    label.pack()
+
+    # Tekstkast
+
     button = tk.Button(aken, text="Sulge", command=aken.destroy).pack()
    
     aken.mainloop()
