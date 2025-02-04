@@ -1,5 +1,4 @@
 import tkinter as tk
-import ctypes
 
 def main():
     aken = tk.Tk()
