@@ -2,6 +2,10 @@ import tkinter as tk
 import ctypes
 from PIL import Image, ImageTk
 
+def loe_fail(failinimi):
+    with open(failinimi, 'r', encoding='utf-8') as file:
+        return file.read()
+    
 def main():
     aken = tk.Tk()
     aken.title("tkinter ülesanded")
@@ -23,7 +27,15 @@ def main():
     label.pack()
 
     # Tekstkast
+    # Text vidina loomine
+    tekst = tk.Text(aken, wrap=tk.WORD, font=("Arial", 16, "bold"), fg="blue")
+    scrollbar = tk.Scrollbar(aken, command=tekst.yview)
+    tekst.config(yscrollcommand=scrollbar.set)
+    scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+    tekst.pack(expand=True, fill=tk.BOTH)
 
+    failisisu = loe_fail("tekst.txt")
+    tekst.insert(tk.INSERT, failisisu)
     button = tk.Button(aken, text="Sulge", command=aken.destroy).pack()
    
     aken.mainloop()
